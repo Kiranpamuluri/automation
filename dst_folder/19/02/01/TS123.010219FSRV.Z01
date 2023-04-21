@@ -1,0 +1,42 @@
+sudo adduser --system --home=/opt/odoo13 --group odoo13
+sudo su - odoo13 -s /bin/bash
+sudo cp /opt/odoo13/odoo/debian/odoo.conf /etc/odoo.conf
+sudo cp /opt/odoo/debian/odoo.conf /etc/odoo.conf
+sudo nano /etc/odoo.conf
+sudo chown odoo13: /etc/odoo.conf
+
+[Unit]
+   Description=Odoo
+   Documentation=http://www.odoo.com
+   [Service]
+   # Ubuntu/Debian convention:
+   Type=simple
+   User=odoo
+   ExecStart=/opt/odoo13/odoo/odoo-bin -c /etc/odoo.conf
+   [Install]
+   WantedBy=default.target
+
+sudo tail -f /var/log/odoo13/odoo.log
+
+
+[options]
+   ; This is the password that allows database operations:
+   ; admin_passwd = admin
+   db_host = 127.0.0.1
+   db_port = 8069
+   db_user = odoo13
+   db_password = False
+   addons_path = /opt/odoo13/addons
+   logfile = /var/log/odoo/odoo.log
+
+
+https://linuxize.com/post/how-to-install-odoo-13-on-ubuntu-18-04/
+
+
+https://testdriven.io/blog/django-and-celery/
+
+sudo systemctl start rabbitmq-server
+sudo systemctl stop rabbitmq-server
+
+
+https://www.codesikho.com/s/courses/5e48f3270cf2ae7b7bf5a96b/take
